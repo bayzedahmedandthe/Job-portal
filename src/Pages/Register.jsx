@@ -4,15 +4,17 @@ import { toast } from "react-toastify";
 import { useContext } from "react";
 import { AuthContext } from "../Components/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
+import auth from "../Firebase.init";
 
 
 const Register = () => {
     const navigate = useNavigate();
-    const { createUser } = useContext(AuthContext);
+    const { createUser,  updateUserProfile, setUser } = useContext(AuthContext);
     const handleRegister = e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
+        const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
         if(password.length < 6){
@@ -27,6 +29,13 @@ const Register = () => {
             navigate("/")
             toast.success("Registation successfull")
             console.log(result.user);
+            updateUserProfile({displayName: name, photoURL: photo})
+            .then(() => {
+                setUser((prevUser) => { return {...prevUser ,displayName: name, photoURL: photo }})
+            })
+            .catch(error => {
+                console.log(error);
+            })
         })
         .catch(error => {
             console.log(error);
@@ -47,6 +56,12 @@ const Register = () => {
                                 <span className="label-text">Name</span>
                             </label>
                             <input type="text" name="name" placeholder="name" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">PhotoURL</span>
+                            </label>
+                            <input type="text" name="photo" placeholder="PhotoURL" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
