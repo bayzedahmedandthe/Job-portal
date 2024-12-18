@@ -2,7 +2,7 @@ import footerLogo from "../assets/Icons/icons8-job-application-100.png"
 
 const Footer = () => {
     return (
-        <footer className="footer pt-10 text-base-content p-10">
+        <footer className="footer mt-10 text-base-content p-10">
             <aside>
                 <img src={footerLogo} alt="" />
                 <p>

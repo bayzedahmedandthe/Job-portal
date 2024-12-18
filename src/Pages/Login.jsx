@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Components/AuthProvider";
 import { toast } from "react-toastify";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, sendPasswordResetEmail, signInWithPopup } from "firebase/auth";
 import auth from "../Firebase.init";
 
 const Login = () => {
@@ -37,6 +37,9 @@ const Login = () => {
                 console.log(error);
             })
     }
+    const handleForgetPassword = () => {
+        sendPasswordResetEmail(auth, email)
+    }
 
 return (
     <div>
@@ -63,7 +66,7 @@ return (
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" placeholder="password" name="password" className="input input-bordered" required />
-                            <label className="label">
+                            <label onClick={handleForgetPassword} className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
