@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Components/AuthProvider";
 import { toast } from "react-toastify";
 import { GoogleAuthProvider, sendPasswordResetEmail, signInWithPopup } from "firebase/auth";
 import auth from "../Firebase.init";
 
 const Login = () => {
+const location = useLocation();
+const from = location.state || "/"
     const navigate = useNavigate();
     const { signInUser } = useContext(AuthContext);
     const handleLogin = e => {
@@ -16,7 +18,7 @@ const Login = () => {
         signInUser(email, password)
             .then(result => {
                 toast.success("Login successfull")
-                navigate("/")
+                navigate(from)
                 console.log(result.user);
             })
             .catch(error => {
@@ -29,7 +31,7 @@ const Login = () => {
         signInWithPopup(auth, provider)
             .then(result => {
                 toast.success("Login successfull");
-                navigate("/")
+                navigate(from)
                 console.log(result.user);
             })
             .catch(error => {
