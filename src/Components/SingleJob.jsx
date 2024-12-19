@@ -11,6 +11,7 @@ const jobCard = ({ job }) => {
     })
     // console.log(job);
     const { title, location, _id, jobType, category, applicationDeadline, salaryRange, description, company, requirements, responsibilities, status, company_logo } = job;
+    console.log(company_logo);
     return (
         <div className="flex justify-center">
             <div data-aos="zoom-in-up"

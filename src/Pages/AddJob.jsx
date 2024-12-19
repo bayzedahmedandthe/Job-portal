@@ -31,6 +31,7 @@ const AddJob = () => {
             .then(res => res.json())
             .then(data => {
                 navigate("/mypostedjobs")
+                // e.target.reset()
                 // console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
@@ -165,7 +166,7 @@ const AddJob = () => {
                     <label className="label">
                         <span className="label-text">Company-logo-URL</span>
                     </label>
-                    <input type="url" name="companylogo" placeholder="Company-logo-URL" className="input input-bordered" required />
+                    <input type="url" name="company_logo" placeholder="Company-logo-URL" className="input input-bordered" required />
                 </div>
                 {/* application deadline*/}
                 <div className="form-control">
