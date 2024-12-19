@@ -40,7 +40,10 @@ const Navbar = () => {
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
 
                         <Link to="/"><li><a>Home</a></li></Link>
-                        <li><a>Item 3</a></li>
+                        <Link to="/myapplication"><li><a>My applications</a></li></Link>
+                        <Link to="/addjob"><li><a>Add Job</a></li></Link>
+                        <Link to="/mypostedjobs"><li><a>My posted jobs</a></li></Link>
+
                     </ul>
                 </div>
                 <Link to="/"><img className="w-16 h-16" src={footerLogo} alt="" /></Link>
@@ -49,7 +52,9 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     <Link to="/"><li><a>Home</a></li></Link>
-                    <li><a>Item 3</a></li>
+                    <Link to="/myapplication"><li><a>My applications</a></li></Link>
+                    <Link to="/addjob"><li><a>Add Job</a></li></Link>
+                    <Link to="/mypostedjobs"><li><a>My posted jobs</a></li></Link>
                 </ul>
             </div>
             <div className="navbar-end">

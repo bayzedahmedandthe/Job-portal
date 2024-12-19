@@ -6,7 +6,7 @@ import bannerImage2 from "../assets/bannerImage2.jpg"
 const Header = () => {
     return (
         <div className="hero">
-            <div className="hero-content flex-col lg:flex-row-reverse md:gap-32  ">
+            <div className="hero-content flex-col lg:flex-row-reverse md:gap-14 ">
                 <div>
                    
                     <motion.img
@@ -26,11 +26,11 @@ const Header = () => {
 
                 >
                     <h1
-                        className="lg:text-5xl md:text-3xl text-2xl font-bold md:leading-[60px]">The Easiest Way <br />
-                        to Get Your New <br /> <span className="text-blue-500">Job</span></h1>
+                        className="lg:text-5xl md:text-3xl text-2xl font-bold md:leading-[60px]">The Easiest Way 
+                        to Get <br /> Your New <br /> <span className="text-blue-500">Job</span></h1>
                     <p className="md:py-16">
                         Each month, more than 3 million job seekers turn to <br />
-                        website in their search for work, making over <br /> 140,000 <br />
+                        website in their search for work, making over  140,000 <br />
                         applications every single day
                     </p>
                 </motion.div>
