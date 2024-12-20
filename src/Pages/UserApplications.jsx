@@ -1,29 +1,35 @@
 import { useEffect, useState } from "react";
 import useAuth from "../Hooks/UseAuth";
+import axios from "axios";
 
 
 const myApplications = () => {
     const { user } = useAuth();
     const [jobs, setjobs] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/job_applications?email=${user.email}`)
-            .then(res => res.json())
-            .then(data => setjobs(data))
+        axios.get(`http://localhost:5000/job_applications?email=${user.email}`,
+            {withCredentials: true}
+        )
+            .then(res => setjobs(res.data))
+        // axios.get(`http://localhost:5000/job_applications?email=${user.email}`, 
+        //     {withCredentials: true}
+        // )
+        // .then(res => res.data)
     }, [user.email])
-    const handleDelete = (_id) =>{
+    const handleDelete = (_id) => {
         console.log(_id);
         fetch(`http://localhost:5000/job_applications/${_id}`, {
             method: "DELETE",
-        
+
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.deletedCount){
-                alert("Application delete successfull")
-            }
-            setjobs((previous) => previous.filter(item => item._id !== _id))
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount) {
+                    alert("Application delete successfull")
+                }
+                setjobs((previous) => previous.filter(item => item._id !== _id))
+            })
     }
     return (
         <div className="overflow-x-auto">
@@ -73,7 +79,7 @@ const myApplications = () => {
                                 </td>
                                 <td>{job.jobType}</td>
                                 <th>
-                                    <button onClick={()=>handleDelete(job._id)} className="btn btn-error btn-xs">X</button>
+                                    <button onClick={() => handleDelete(job._id)} className="btn btn-error btn-xs">X</button>
                                 </th>
                             </tr>
                         )

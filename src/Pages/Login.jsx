@@ -4,6 +4,7 @@ import { AuthContext } from "../Components/AuthProvider";
 import { toast } from "react-toastify";
 import { GoogleAuthProvider, sendPasswordResetEmail, signInWithPopup } from "firebase/auth";
 import auth from "../Firebase.init";
+import axios from "axios";
 
 const Login = () => {
 const location = useLocation();
@@ -19,7 +20,17 @@ const from = location.state || "/"
             .then(result => {
                 toast.success("Login successfull")
                 navigate(from)
-                console.log(result.user);
+
+                // const user = {email: email};
+                // axios.post("http://localhost:5000/jwt", user, {withCredentials: true})
+                // .then(res => {
+                //     console.log(res.data);
+                // })
+                const user = {email: email};
+                axios.post("http://localhost:5000/jwt", user, {withCredentials: true})
+                .then(res => {
+                    console.log(res.data);
+                })
             })
             .catch(error => {
                 toast.error("Invalid creadential")

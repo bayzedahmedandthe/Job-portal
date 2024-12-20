@@ -11,7 +11,6 @@ const MyPostedJobs = () => {
             .then(data => setJobs(data))
     }, [user.email]
     )
-    console.log(jobs);
     return (
         <div className="bg-blue-50 rounded-lg mt-12">
             <h2 className="text-center text-xl font-semibold pt-8">My Posted Jobs</h2>
