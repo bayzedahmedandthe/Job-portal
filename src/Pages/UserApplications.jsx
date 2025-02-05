@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 import useAuth from "../Hooks/UseAuth";
-import axios from "axios";
+import UseAxios from "../Hooks/UseAxios";
+import Swal from "sweetalert2";
+
 
 
 const myApplications = () => {
     const { user } = useAuth();
     const [jobs, setjobs] = useState([]);
+    const axiosSecure = UseAxios();
     useEffect(() => {
-        axios.get(`http://localhost:5000/job_applications?email=${user.email}`,
-            {withCredentials: true}
-        )
-            .then(res => setjobs(res.data))
-        // axios.get(`http://localhost:5000/job_applications?email=${user.email}`, 
-        //     {withCredentials: true}
-        // )
-        // .then(res => res.data)
+        // axios.get(`http://localhost:5000/job_applications?email=${user.email}`, {
+        //     withCredentials: true
+        // })
+        // .then(res => {
+        //    setjobs(res.data);
+        // })
+
+        // axiosSecure.get(`/job_applications?email=${user.email}`)
+        // .then(res => setjobs(res.data))
+    axiosSecure.get(`/job_applications?email=${user.email}`)
+    .then(res => setjobs(res.data))
+        
     }, [user.email])
     const handleDelete = (_id) => {
         console.log(_id);
@@ -26,10 +33,16 @@ const myApplications = () => {
             .then(data => {
                 console.log(data);
                 if (data.deletedCount) {
-                    alert("Application delete successfull")
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
                 }
                 setjobs((previous) => previous.filter(item => item._id !== _id))
-            })
+            })	
     }
     return (
         <div className="overflow-x-auto">

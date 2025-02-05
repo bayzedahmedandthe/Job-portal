@@ -4,13 +4,20 @@ import { AuthContext } from "../Components/AuthProvider";
 import { toast } from "react-toastify";
 import auth from "../Firebase.init";
 import footerLogo from "../assets/Icons/icons8-job-application-100.png"
+import Swal from "sweetalert2";
 
 const Navbar = () => {
     const { user, signOutUser } = useContext(AuthContext);
     const handleSignOut = () => {
         signOutUser(auth)
             .then(() => {
-                toast.success("sign out successfull");
+                Swal.fire({
+                    position: "top",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
 
             })
             .catch(error => {

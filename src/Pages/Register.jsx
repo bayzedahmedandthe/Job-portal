@@ -39,6 +39,7 @@ const Register = () => {
         })
         .catch(error => {
             console.log(error);
+            toast.error("this email alresdy in use")
         })
     }
 

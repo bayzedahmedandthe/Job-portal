@@ -3,10 +3,11 @@ import useAuth from "../Hooks/UseAuth";
 
 
 const MyPostedJobs = () => {
-    const { user } = useAuth()
+    const { user } = useAuth();
+    console.log(user.email);
     const [jobs, setJobs] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/JOBS?email=${user.email}`)
+        fetch(`http://localhost:5000/alljobs?email=${user.email}`)
             .then(res => res.json())
             .then(data => setJobs(data))
     }, [user.email]
